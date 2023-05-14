@@ -4,7 +4,8 @@ const theme = {
     primaryDark: "#000",
   },
   color: {
-    primaryGreen: "#188754",
+    // primaryGreen: "#188754",
+    primaryGreen: "#00B2C8",
     primaryBlue: "#0C6EFD",
   },
   width: { xl: "1300px", lg: "1075px" },

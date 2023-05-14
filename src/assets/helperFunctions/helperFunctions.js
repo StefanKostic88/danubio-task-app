@@ -36,3 +36,37 @@ const getSvgStatus = (status) => {
       return svgStatusOptions.MIA;
   }
 };
+
+export const generatePaginationData = ({
+  curPage,
+  prevPage,
+  prevTwoPages,
+  prevThreePages,
+  prevFourPages,
+  nextPage,
+  nextTwoPages,
+  nextThreePages,
+  nextFourPages,
+}) => {
+  return {
+    prevFourPages: prevFourPages < 38 ? null : curPage - 4,
+    prevThreePages: prevThreePages < 38 ? null : curPage - 3,
+    prevTwoPages: prevTwoPages <= -1 ? null : curPage - 2,
+    prevPage: prevPage <= 0 ? null : curPage - 1,
+    curPage: curPage,
+    nextPage: nextPage > 42 ? null : curPage + 1,
+    nextTwoPages: nextTwoPages > 42 ? null : curPage + 2,
+    nextThreePages: nextThreePages >= 6 ? null : curPage + 3,
+    nextFourPages: nextFourPages >= 6 ? null : curPage + 4,
+  };
+};
+
+// prevFourPages,
+// prevThreePages,
+// prevTwoPages,
+// prevPage,
+// curPage,
+// nextPage,
+// nextTwoPages,
+// nextThreePages,
+// nextFourPages,

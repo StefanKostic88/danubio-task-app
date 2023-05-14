@@ -7,7 +7,7 @@ const MainContainer = () => {
   const ctx = useContext(GlobalContext);
 
   if (!ctx.curPageCharactersArr) return;
-
+  console.log();
   return (
     <ContainerWraper
       navigationHeight={ctx.navigationHeight}
@@ -77,8 +77,11 @@ const MainContainer = () => {
           </button>
         </div>
       </div> */}
-      {/* <MainCardsContainer arrData={ctx.curPageCharactersArr} /> */}
-      <ErrorComponent />
+
+      {!ctx.isLoading && (
+        <MainCardsContainer arrData={ctx.curPageCharactersArr} />
+      )}
+      {/* <ErrorComponent /> */}
     </ContainerWraper>
   );
 };

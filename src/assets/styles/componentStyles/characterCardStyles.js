@@ -16,7 +16,7 @@ export const MainCardsContainerStyled = styled.div`
     gap: 2rem;
   }
   @media ${({ theme }) => theme.breakpoints.md} {
-    gap: 0;
+    gap: 1.5rem;
     padding: 2rem 1rem;
   }
   @media (max-width: 655px) {
@@ -28,7 +28,8 @@ export const MainCardsContainerStyled = styled.div`
 export const WraperStyled = styled.figure`
   display: flex;
   flex-direction: column;
-  border: 5px solid #fff;
+  // border: 5px solid #fff;
+  border: 5px solid ${({ theme }) => theme.color.primaryGreen};
   padding: 1rem;
   background: #000000db;
   border-radius: 10px;
@@ -40,6 +41,16 @@ export const WraperStyled = styled.figure`
     background: #000000db;
     // box-shadow: 1px 1px 20px -6px #1b1b1b;
     box-shadow: 1px 1px 20px -6px ${({ theme }) => theme.color.primaryGreen};
+  }
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    min-height: 485px;
+    min-width: 80%;
+  }
+
+  @media (max-width: 655px) {
+    grid-template-columns: repeat(1, auto);
+    padding: 2rem 0;
   }
 `;
 

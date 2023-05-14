@@ -24,26 +24,34 @@ const App = () => {
   const [curPageCharactersArr, setCurPageCharactersArr] = useState(null);
   const [navigationHeight, setNavigationHeigth] = useState();
   const [footerHeight, setFooterHeight] = useState();
-  const [currentPageObject, setCurrentPageObject] = useState(
-    generateCurentPaginationState(1)
-  );
-  const getCurrentPageData = async () => {
-    const { curPage: currentPage } = currentPageObject;
-    const currentPageData = await getCharactersPage(currentPage);
-    setCurPageCharactersArr(() => [...currentPageData]);
+  const [currentPageObject, setCurrentPageObject] = useState({});
+  const [isLoading, setIsloading] = useState(true);
+
+  const selectPage = (curPage) => {
+    setCurrentPageObject(() => generateCurentPaginationState(curPage));
   };
 
   useEffect(() => {
-    getCurrentPageData();
+    setCurrentPageObject(() => generateCurentPaginationState(1));
   }, []);
 
-  const selectPage = (curPage) => {
-    console.log(curPage);
-    setCurrentPageObject(() => generateCurentPaginationState(curPage));
-  };
-  // getCurrentPageData();
+  useEffect(() => {
+    const getCurrentPageData = async () => {
+      const { curPage: currentPage } = currentPageObject;
+      const currentPageData = await getCharactersPage(currentPage);
+      setCurPageCharactersArr(() => [...currentPageData]);
+    };
 
-  // console.log(currentPageObject);
+    setIsloading(() => true);
+    getCurrentPageData();
+    const timer = setTimeout(() => {
+      setIsloading(() => false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [currentPageObject]);
 
   return (
     <GlobalContext.Provider
@@ -59,6 +67,7 @@ const App = () => {
         },
         paginationData: currentPageObject,
         selectPage,
+        isLoading,
       }}
     >
       <Routes>

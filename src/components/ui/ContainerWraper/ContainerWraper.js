@@ -7,7 +7,7 @@ const ContainerWraperStyled = styled.main`
     100vh - ${(props) => (props.topSide ? props.topSide : 0)}px -
       ${(props) => (props.bottomSide ? props.bottomSide : 0)}px
   );
-  border: 1px solid black;
+  border: 1px solid red;
   width: 100%;
   margin-top: ${(props) => (props.topSide ? props.topSide : 0)}px;
   margin-bottom: ${(props) => (props.bottomSide ? props.bottomSide : 0)}px;

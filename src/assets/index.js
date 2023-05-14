@@ -11,6 +11,7 @@ export * from "./styles/pagesStyles/pagesStyles";
 export * from "./styles/componentStyles/navigationStyles";
 export * from "./styles/componentStyles/characterCardStyles";
 export * from "./styles/componentStyles/errorStyles";
+export * from "./styles/componentStyles/footerStyles";
 
 //Helper Functions
 

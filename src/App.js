@@ -18,12 +18,12 @@ export const generateCurentPaginationState = (curentPage) => {
   };
 };
 
-const Pag = generateCurentPaginationState(1);
+// const Pag = generateCurentPaginationState(1);
 
 const App = () => {
   const [curPageCharactersArr, setCurPageCharactersArr] = useState(null);
-  const [navigationHeight, setNavigationHeigth] = useState();
-  const [footerHeight, setFooterHeight] = useState();
+  const [navigationHeight, setNavigationHeigth] = useState(0);
+  const [footerHeight, setFooterHeight] = useState(0);
   const [currentPageObject, setCurrentPageObject] = useState({});
   const [isLoading, setIsloading] = useState(true);
 
@@ -52,6 +52,13 @@ const App = () => {
       clearTimeout(timer);
     };
   }, [currentPageObject]);
+  console.log();
+
+  const getNavigationHeight = (height) => {
+    setNavigationHeigth(() => height);
+  };
+
+  console.log(navigationHeight);
 
   return (
     <GlobalContext.Provider
@@ -59,14 +66,12 @@ const App = () => {
         curPageCharactersArr: curPageCharactersArr,
         navigationHeight: navigationHeight,
         footerHeight: footerHeight,
-        getNavigationHeight: (height) => {
-          setNavigationHeigth(() => height);
-        },
+        getNavigationHeight: getNavigationHeight,
         getfooterHeight: (height) => {
           setFooterHeight(() => height);
         },
         paginationData: currentPageObject,
-        selectPage,
+        selectPage: selectPage,
         isLoading,
       }}
     >

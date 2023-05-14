@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useContext } from "react";
+import React, { useEffect, useRef, useContext, useState } from "react";
 import GlobalContext from "../../store/global-context";
 
 import {
@@ -10,7 +10,9 @@ import {
 const MainNav = () => {
   const NavRef = useRef();
   const ctx = useContext(GlobalContext);
+
   useEffect(() => {
+    if (NavRef.current.clientHeight === 35) return;
     ctx.getNavigationHeight(NavRef.current.clientHeight);
   }, []);
 

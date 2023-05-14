@@ -1,23 +1,57 @@
 import React from "react";
 import GlobalContext from "../../store/global-context";
 import { useContext, useEffect, useRef } from "react";
-
-import styled from "styled-components";
-
-const FooterStyled = styled.footer`
-  // width: ${({ theme }) => theme.width.lg};
-  margin: 0 auto;
-  width: 100%;
-`;
+import { generatePaginationData } from "../../assets";
+import FooterPagination from "./FooterPagination/FooterPagination";
+import { FooterStyled } from "../../assets";
 
 const Footer = () => {
   const footerRef = useRef();
   const ctx = useContext(GlobalContext);
+
   useEffect(() => {
     ctx.getfooterHeight(footerRef.current.clientHeight);
   }, []);
 
-  return <FooterStyled ref={footerRef}>Footer</FooterStyled>;
+  if (!ctx.paginationData) return;
+
+  const generatedPagData = generatePaginationData(ctx.paginationData);
+
+  const {
+    prevFourPages,
+    prevThreePages,
+    prevTwoPages,
+    prevPage,
+    curPage,
+    nextPage,
+    nextTwoPages,
+    nextThreePages,
+    nextFourPages,
+  } = generatedPagData;
+
+  const paginationValues = [
+    prevFourPages,
+    prevThreePages,
+    prevTwoPages,
+    prevPage,
+    curPage,
+    nextPage,
+    nextTwoPages,
+    nextThreePages,
+    nextFourPages,
+  ];
+
+  return (
+    <FooterStyled ref={footerRef}>
+      <FooterPagination
+        paginationNumbbersArr={paginationValues}
+        getCurrentPage={ctx.selectPage}
+        curPage={curPage}
+        prevPage={prevPage}
+        nextPage={nextPage}
+      />
+    </FooterStyled>
+  );
 };
 
 export default Footer;

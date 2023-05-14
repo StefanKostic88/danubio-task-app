@@ -1,21 +1,13 @@
 import CharacterCard from "./CharacterCard/CharacterCard";
-const MainCardsContainer = () => {
+import { MainCardsContainerStyled } from "../../assets/styles/componentStyles/characterCardStyles";
+
+const MainCardsContainer = ({ arrData }) => {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, auto)",
-        gridAutoColumns: "600px",
-        justifyContent: "center",
-        gap: "2rem",
-      }}
-    >
-      <CharacterCard />
-      <CharacterCard />
-      <CharacterCard />
-      <CharacterCard />
-      <CharacterCard />
-    </div>
+    <MainCardsContainerStyled>
+      {arrData.map((el, index) => (
+        <CharacterCard {...el} key={index} />
+      ))}
+    </MainCardsContainerStyled>
   );
 };
 

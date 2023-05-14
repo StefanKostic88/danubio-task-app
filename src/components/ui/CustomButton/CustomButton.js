@@ -10,8 +10,9 @@ const CustomButtonStyled = styled.button`
 
   padding: 0.5rem 2rem;
   border-radius: 3px;
-  // border: none;
+
   width: 100%;
+  cursor: pointer;
 
   &:hover {
     background: ${({ theme }) => theme.color.primaryGreen};

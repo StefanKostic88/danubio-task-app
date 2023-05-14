@@ -17,7 +17,13 @@ const MainNav = () => {
   return (
     <NavigationStyled ref={NavRef}>
       <InnerNavStyled>
-        <NavigationHeadingStyled>Rick & Morty</NavigationHeadingStyled>
+        {/* <NavigationHeadingStyled>Rick & Morty</NavigationHeadingStyled> */}
+        <NavigationHeadingStyled>
+          <img
+            style={{ width: "150px" }}
+            src="https://media.cdn.adultswim.com/uploads/20210428/21428161947-rick-and-morty-logo-png.png"
+          />
+        </NavigationHeadingStyled>
       </InnerNavStyled>
     </NavigationStyled>
   );

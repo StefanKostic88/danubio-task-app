@@ -17,7 +17,9 @@ body {
   // font-family: 'Syncopate', sans-serif;
   font-family: 'Orbitron', sans-serif;
   font-size: 1.6rem;
-  // background-color: rgba(0,0,0,0.85);
+  background-color: rgba(0,0,0,0.85);
+  font-family:'Lora', serif;
+  font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 h1 {
   font-size: 7rem;

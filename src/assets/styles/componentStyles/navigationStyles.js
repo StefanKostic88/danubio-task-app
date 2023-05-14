@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const NavigationStyled = styled.nav`
-  // background: #e0e0e0;
+  background: #e0e0e0;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
 `;
 
 export const InnerNavStyled = styled.div`

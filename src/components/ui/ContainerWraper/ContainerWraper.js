@@ -5,11 +5,12 @@ const ContainerWraperStyled = styled.main`
   margin: 0 auto;
   min-height: calc(
     100vh - ${(props) => (props.topSide ? props.topSide : 0)}px -
-      ${(props) => (props.topSide ? props.topSide : 0)}px
+      ${(props) => (props.bottomSide ? props.bottomSide : 0)}px
   );
   border: 1px solid black;
-  // width: ${({ theme }) => theme.width.lg};
   width: 100%;
+  margin-top: ${(props) => (props.topSide ? props.topSide : 0)}px;
+  margin-bottom: ${(props) => (props.bottomSide ? props.bottomSide : 0)}px;
 `;
 
 const ContainerWraper = ({ children, navigationHeight, footerHeight }) => {

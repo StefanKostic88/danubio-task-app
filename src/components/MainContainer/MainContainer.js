@@ -1,4 +1,4 @@
-import { ContainerWraper, MainCardsContainer } from "../";
+import { ContainerWraper, MainCardsContainer, ErrorComponent } from "../";
 import GlobalContext from "../../store/global-context";
 import { useContext } from "react";
 
@@ -75,6 +75,7 @@ const MainContainer = () => {
         </div>
       </div> */}
       <MainCardsContainer />
+      {/* <ErrorComponent /> */}
     </ContainerWraper>
   );
 };

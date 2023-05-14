@@ -5,9 +5,11 @@ import { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const FooterStyled = styled.footer`
-  // width: ${({ theme }) => theme.width.lg};
   margin: 0 auto;
-  width: 100%;
+  position: fixed;
+  bottom: 0;
+  width: ${({ theme }) => theme.width.lg};
+  padding: 2rem;
 `;
 
 const Footer = () => {

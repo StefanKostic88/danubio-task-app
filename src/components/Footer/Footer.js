@@ -30,9 +30,12 @@ export const generatePaginationData = ({
 };
 const FooterStyled = styled.footer`
   // margin: 0 auto;
+  z-index: 10;
   position: fixed;
   bottom: 0;
   width: ${({ theme }) => theme.width.lg};
+  left: 50%;
+  transform: translateX(-50%);
   padding: 2rem;
   background: black;
 `;

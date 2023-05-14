@@ -77,8 +77,8 @@ const MainContainer = () => {
           </button>
         </div>
       </div> */}
-      <MainCardsContainer arrData={ctx.curPageCharactersArr} />
-      {/* <ErrorComponent /> */}
+      {/* <MainCardsContainer arrData={ctx.curPageCharactersArr} /> */}
+      <ErrorComponent />
     </ContainerWraper>
   );
 };

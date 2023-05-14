@@ -6,12 +6,13 @@ const CustomButtonStyled = styled.button`
   font-size: 1.8rem;
 
   color: ${({ theme }) => theme.fontColor.primaryDark};
-  border: 3px solid ${({ theme }) => theme.color.primaryGreen};
+  border: 1px solid ${({ theme }) => theme.color.primaryGreen};
 
   padding: 0.5rem 2rem;
   border-radius: 3px;
 
-  width: 100%;
+  // width: 100%;
+  width: fit-content;
   cursor: pointer;
 
   &:hover {

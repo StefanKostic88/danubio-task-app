@@ -1,7 +1,16 @@
-import { MainContainer } from "../../components";
+import { useContext } from "react";
+import GlobalContext from "../../store/global-context";
+import { MainContainer, Modal } from "../../components";
 
 const HomePage = () => {
-  return <MainContainer />;
+  const ctx = useContext(GlobalContext);
+  console.log(ctx.modalIsOpened);
+  return (
+    <>
+      {ctx.modalIsOpened && <Modal />}
+      <MainContainer />
+    </>
+  );
 };
 
 export default HomePage;

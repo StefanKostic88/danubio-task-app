@@ -3,22 +3,7 @@ import { Route, Routes } from "react-router";
 import GlobalContext from "./store/global-context";
 import { Root, HomePage } from "./pages";
 import { getCharactersPage } from "./services/fetchData";
-
-export const generateCurentPaginationState = (curentPage) => {
-  return {
-    prevFourPages: curentPage - 4,
-    prevThreePages: curentPage - 3,
-    prevTwoPages: curentPage - 2,
-    prevPage: curentPage - 1,
-    curPage: curentPage,
-    nextPage: curentPage + 1,
-    nextTwoPages: curentPage + 2,
-    nextThreePages: curentPage + 3,
-    nextFourPages: curentPage + 4,
-  };
-};
-
-// const Pag = generateCurentPaginationState(1);
+import { generateCurentPaginationState } from "./assets";
 
 const App = () => {
   const [curPageCharactersArr, setCurPageCharactersArr] = useState(null);
@@ -26,6 +11,7 @@ const App = () => {
   const [footerHeight, setFooterHeight] = useState(0);
   const [currentPageObject, setCurrentPageObject] = useState({});
   const [isLoading, setIsloading] = useState(true);
+  const [modalIsOpened, setModalIsOpened] = useState(false);
 
   const selectPage = (curPage) => {
     setCurrentPageObject(() => generateCurentPaginationState(curPage));
@@ -52,13 +38,10 @@ const App = () => {
       clearTimeout(timer);
     };
   }, [currentPageObject]);
-  console.log();
 
   const getNavigationHeight = (height) => {
     setNavigationHeigth(() => height);
   };
-
-  console.log(navigationHeight);
 
   return (
     <GlobalContext.Provider
@@ -73,6 +56,7 @@ const App = () => {
         paginationData: currentPageObject,
         selectPage: selectPage,
         isLoading,
+        modalIsOpened,
       }}
     >
       <Routes>

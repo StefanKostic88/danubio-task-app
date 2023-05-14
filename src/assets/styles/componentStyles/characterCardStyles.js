@@ -56,7 +56,7 @@ export const WraperStyled = styled.figure`
 
 export const IconStyled = styled.div`
   transform: scale(1);
-  height: 24rem;
+
   transition: all 0.2s linear;
   ${WraperStyled}:hover & {
     transform: scale(1.1);
@@ -64,12 +64,8 @@ export const IconStyled = styled.div`
   img {
     object-fit: cover;
     width: 100%;
-    height: 100%
-    // border-radius: 58%;
-    // border-radius: 20%;
-    // height: 200px;
     border: 4px solid #fff;
-    // width: 200px;
+
     transition: all 0.2s linear;
     // ${WraperStyled}:hover & {
     //   width: 100%;

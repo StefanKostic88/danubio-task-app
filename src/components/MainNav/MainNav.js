@@ -12,7 +12,6 @@ const MainNav = () => {
   const ctx = useContext(GlobalContext);
 
   useEffect(() => {
-    if (NavRef.current.clientHeight === 35) return;
     ctx.getNavigationHeight(NavRef.current.clientHeight);
   }, []);
 

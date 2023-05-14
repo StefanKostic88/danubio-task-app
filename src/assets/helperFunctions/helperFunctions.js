@@ -18,6 +18,36 @@ export const generateCharacterData = ({
   };
 };
 
+export const generateModalData = ({
+  episode,
+  created,
+  gender,
+  id,
+  image,
+  location: { name: lastLocation },
+  origin: { name: originLocation },
+  species,
+  status,
+  name,
+}) => {
+  return {
+    name,
+    gender,
+    species,
+    image,
+    lastLocation,
+    origin: originLocation,
+    status,
+    created: new Date(created).toLocaleString("US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }),
+    episode,
+    episodeCount: episode.length,
+  };
+};
+
 export const svgStatusOptions = {
   GREEN: "greenSvgRender",
   RED: "redSvgRender",
@@ -35,6 +65,20 @@ const getSvgStatus = (status) => {
     case "unknown":
       return svgStatusOptions.MIA;
   }
+};
+
+export const generateCurentPaginationState = (curentPage) => {
+  return {
+    prevFourPages: curentPage - 4,
+    prevThreePages: curentPage - 3,
+    prevTwoPages: curentPage - 2,
+    prevPage: curentPage - 1,
+    curPage: curentPage,
+    nextPage: curentPage + 1,
+    nextTwoPages: curentPage + 2,
+    nextThreePages: curentPage + 3,
+    nextFourPages: curentPage + 4,
+  };
 };
 
 export const generatePaginationData = ({
@@ -60,13 +104,3 @@ export const generatePaginationData = ({
     nextFourPages: nextFourPages >= 6 ? null : curPage + 4,
   };
 };
-
-// prevFourPages,
-// prevThreePages,
-// prevTwoPages,
-// prevPage,
-// curPage,
-// nextPage,
-// nextTwoPages,
-// nextThreePages,
-// nextFourPages,

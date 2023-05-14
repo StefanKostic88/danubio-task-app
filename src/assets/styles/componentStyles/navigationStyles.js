@@ -5,7 +5,6 @@ export const NavigationStyled = styled.nav`
   position: fixed;
   width: 100%;
   z-index: 10;
-  min-height: 35px;
 `;
 
 export const InnerNavStyled = styled.div`

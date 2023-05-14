@@ -1,4 +1,9 @@
-import { ContainerWraper, MainCardsContainer, ErrorComponent } from "../";
+import {
+  ContainerWraper,
+  MainCardsContainer,
+  ErrorComponent,
+  Loading,
+} from "../";
 import GlobalContext from "../../store/global-context";
 import { useContext } from "react";
 
@@ -77,10 +82,11 @@ const MainContainer = () => {
           </button>
         </div>
       </div> */}
-
+      {console.log(ctx.isLoading)}
       {!ctx.isLoading && (
         <MainCardsContainer arrData={ctx.curPageCharactersArr} />
       )}
+      {ctx.isLoading && <Loading />}
       {/* <ErrorComponent /> */}
     </ContainerWraper>
   );

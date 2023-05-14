@@ -3,3 +3,4 @@ export { default as theme } from "./theme/Theme";
 export * from "./styles/pagesStyles/pagesStyles";
 export * from "./styles/componentStyles/navigationStyles";
 export * from "./styles/componentStyles/errorStyles";
+export * from "./helperFunctions/helperFunctions";

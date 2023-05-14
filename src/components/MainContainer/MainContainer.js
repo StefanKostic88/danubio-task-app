@@ -3,7 +3,10 @@ import GlobalContext from "../../store/global-context";
 import { useContext } from "react";
 
 const MainContainer = () => {
+  //filter i loding spinner ovde
   const ctx = useContext(GlobalContext);
+
+  if (!ctx.curPageCharactersArr) return;
 
   return (
     <ContainerWraper
@@ -74,7 +77,7 @@ const MainContainer = () => {
           </button>
         </div>
       </div> */}
-      <MainCardsContainer />
+      <MainCardsContainer arrData={ctx.curPageCharactersArr} />
       {/* <ErrorComponent /> */}
     </ContainerWraper>
   );

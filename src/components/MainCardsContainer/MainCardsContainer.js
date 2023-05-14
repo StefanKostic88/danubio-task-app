@@ -1,5 +1,5 @@
 import CharacterCard from "./CharacterCard/CharacterCard";
-const MainCardsContainer = () => {
+const MainCardsContainer = ({ arrData }) => {
   return (
     <div
       style={{
@@ -7,14 +7,13 @@ const MainCardsContainer = () => {
         gridTemplateColumns: "repeat(3, auto)",
         gridAutoColumns: "600px",
         justifyContent: "center",
+        padding: "2rem",
         gap: "2rem",
       }}
     >
-      <CharacterCard />
-      <CharacterCard />
-      <CharacterCard />
-      <CharacterCard />
-      <CharacterCard />
+      {arrData.map((el, index) => (
+        <CharacterCard {...el} key={index} />
+      ))}
     </div>
   );
 };

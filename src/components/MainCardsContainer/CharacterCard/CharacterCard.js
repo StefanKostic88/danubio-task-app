@@ -1,6 +1,8 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { CustomButton } from "../../";
+import { svgStatusOptions } from "../../../assets";
+import CharacterCardStatusSvg from "./CharacterCardStatusSvg/CharacterCardStatusSvg";
 
 const WraperStyled = styled.div`
   border: 5px solid #fff;
@@ -128,7 +130,56 @@ const CharacterDeitails = styled.h4`
   }
 `;
 
-const CharacterCard = () => {
+const CharacterCard = ({
+  id,
+  image,
+  lastLocation,
+  name,
+  status,
+  svgStatusRender,
+}) => {
+  console.log(svgStatusRender);
+
+  let xxx;
+
+  if (svgStatusOptions.RED === svgStatusRender) {
+    // console.log("red");
+    xxx = (
+      <AnimationStyledContainer>
+        <svg width="100%" height="100%">
+          <SvgPolylineStyledFirst points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"></SvgPolylineStyledFirst>
+          <SvgPolylineStyledSecond points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"></SvgPolylineStyledSecond>
+        </svg>
+      </AnimationStyledContainer>
+    );
+  }
+  if (svgStatusOptions.MIA === svgStatusRender) {
+    xxx = (
+      <AnimationStyledContainer>
+        <div
+          style={{
+            // position: "abstolute",
+            width: "100%",
+            height: "100%",
+            left: "1rem",
+            color: "white",
+            fontSize: "25px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            // marginLeft: "1rem",
+            // top: "2rem",
+          }}
+        >
+          MIA
+        </div>
+      </AnimationStyledContainer>
+    );
+  }
+  if (svgStatusOptions.RED === svgStatusRender) {
+    xxx = <div></div>;
+  }
+
   return (
     <figure style={{ maxWidth: "300px" }}>
       <WraperStyled>
@@ -137,26 +188,40 @@ const CharacterCard = () => {
           // minHeight: " 450px"
         >
           <div style={{ overflow: "hidden", position: "relative" }}>
-            <AnimationStyledContainer>
-              <svg width="100%" height="100%">
-                <SvgPolylineStyledFirst points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"></SvgPolylineStyledFirst>
-                <SvgPolylineStyledSecond points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"></SvgPolylineStyledSecond>
-              </svg>
-            </AnimationStyledContainer>
+            {/* <AnimationStyledContainer>
+              <div
+                style={{
+                  // position: "abstolute",
+                  width: "100%",
+                  height: "100%",
+                  left: "1rem",
+                  color: "white",
+                  fontSize: "25px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  // marginLeft: "1rem",
+                  // top: "2rem",
+                }}
+              >
+                MIA
+              </div>
+            </AnimationStyledContainer> */}
+            <CharacterCardStatusSvg />
             <IconStyled>
-              <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" />
+              <img src={image} />
             </IconStyled>
           </div>
 
           <CardContent>
             <CharacterNameTitleStyled>
-              <h3>Name</h3>
+              <h3>{name}</h3>
             </CharacterNameTitleStyled>
             <CharacterDeitails>
-              Status:<span> Alive</span>
+              Status:<span> {status}</span>
             </CharacterDeitails>
             <CharacterDeitails>
-              Last Location: <span> Earth</span>
+              Last Location: <span> {lastLocation}</span>
             </CharacterDeitails>
           </CardContent>
         </div>
@@ -178,3 +243,6 @@ const CharacterCard = () => {
 };
 
 export default CharacterCard;
+
+{
+}

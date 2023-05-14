@@ -10,6 +10,7 @@ const FooterStyled = styled.footer`
   bottom: 0;
   width: ${({ theme }) => theme.width.lg};
   padding: 2rem;
+  background: black;
 `;
 
 const Footer = () => {

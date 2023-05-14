@@ -14,6 +14,7 @@ export const generateCharacterData = ({
     lastLocation,
     status,
     svgStatusRender,
+    bookmarked: false,
   };
 };
 

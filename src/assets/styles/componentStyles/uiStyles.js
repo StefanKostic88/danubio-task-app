@@ -6,7 +6,7 @@ export const ContainerWraperStyled = styled.main`
     100vh - ${(props) => (props.topSide ? props.topSide : 0)}px -
       ${(props) => (props.bottomSide ? props.bottomSide : 0)}px
   );
-  border: 1px solid red;
+  // border: 1px solid red;
   width: 100%;
   margin-top: ${(props) => (props.topSide ? props.topSide : 92)}px;
   margin-bottom: ${(props) => (props.bottomSide ? props.bottomSide : 92)}px;
@@ -137,4 +137,16 @@ export const ButtonActionStyled = styled.div`
     flex-direction: column;
     gap: 0.5rem;
   }
+`;
+
+export const TitleStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  align-items: center;
+  gap: 1rem;
+  color: ${({ theme }) => theme.fontColor.primary};
+  z-index: 1;
+  position: relative;
 `;

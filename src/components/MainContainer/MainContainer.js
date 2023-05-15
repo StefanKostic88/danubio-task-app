@@ -6,6 +6,7 @@ import {
 } from "../";
 import GlobalContext from "../../store/global-context";
 import { useContext } from "react";
+import { TitleStyled } from "../../assets";
 
 const MainContainer = () => {
   const ctx = useContext(GlobalContext);
@@ -17,21 +18,9 @@ const MainContainer = () => {
     >
       {!ctx.isLoading && !ctx.hasError && (
         <>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginTop: "2rem",
-              marginBottom: "4rem",
-              alignItems: "center",
-              gap: "1rem",
-              color: "#fff",
-              zIndex: 1,
-              position: "relative",
-            }}
-          >
+          <TitleStyled>
             <h1>Characters</h1>
-          </div>
+          </TitleStyled>
           <MainCardsContainer
             arrData={ctx.curPageCharactersArr}
             onOpenModal={ctx.openModal}

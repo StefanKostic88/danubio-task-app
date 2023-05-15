@@ -1,6 +1,6 @@
 const theme = {
   fontColor: {
-    primary: "#fff",
+    primary: "#eaeaea",
     primaryDark: "#000",
   },
   color: {

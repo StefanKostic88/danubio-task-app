@@ -77,6 +77,9 @@ const App = () => {
   const getNavigationHeight = (height) => {
     setNavigationHeigth(() => height);
   };
+  const getfooterHeight = (height) => {
+    setFooterHeight(() => height);
+  };
 
   const getSearchedCharacters = async (searchedCharacter) => {
     setHasError(() => false);
@@ -123,20 +126,18 @@ const App = () => {
         curPageCharactersArr: curPageCharactersArr,
         navigationHeight: navigationHeight,
         footerHeight: footerHeight,
-        getNavigationHeight: getNavigationHeight,
-        getfooterHeight: (height) => {
-          setFooterHeight(() => height);
-        },
         paginationData: currentPageObject,
-        selectPage: selectPage,
         isLoading,
         modalIsOpened,
-        getSearchedCharacters: getSearchedCharacters,
         isSearched,
         hasError,
         maxPages,
-        openModal,
         modalInfoData,
+        getNavigationHeight: getNavigationHeight,
+        getfooterHeight: getfooterHeight,
+        selectPage: selectPage,
+        getSearchedCharacters: getSearchedCharacters,
+        openModal,
         closeModal,
         reset,
       }}
@@ -144,6 +145,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Root />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<div>Error</div>} />
         </Route>
       </Routes>
     </GlobalContext.Provider>

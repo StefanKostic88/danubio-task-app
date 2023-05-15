@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const ErrorWindowStyled = styled.div`
-  width: 75%;
+  width: 100%;
+  padding: 2rem 0;
   margin-top: 20%;
   margin-left: auto;
   margin-right: auto;

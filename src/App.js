@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import GlobalContext from "./store/global-context";
-import { Root, HomePage } from "./pages";
+import { Root, HomePage, CharacterWikiPage } from "./pages";
 import {
   getCharactersPage,
   searchCharacter,
@@ -145,7 +145,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Root />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="*" element={<div>Error</div>} />
+          <Route
+            path="/character-details/:id"
+            element={<CharacterWikiPage />}
+          />
         </Route>
       </Routes>
     </GlobalContext.Provider>

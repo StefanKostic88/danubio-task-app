@@ -9,6 +9,7 @@ export const getCharactersPage = async (curPage) => {
     const { results, info } = await res.json();
 
     const charArr = results.map((el) => generateCharacterData(el));
+    console.log(charArr);
     const { pages: pagesCount } = info;
 
     return { charArr, pagesCount };

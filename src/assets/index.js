@@ -7,6 +7,10 @@ export { default as theme } from "./theme/Theme";
 //Pages Styles
 export * from "./styles/pagesStyles/pagesStyles";
 
+//UI styles
+
+export * from "./styles/componentStyles/uiStyles";
+
 //Component Styles
 export * from "./styles/componentStyles/navigationStyles";
 export * from "./styles/componentStyles/characterCardStyles";

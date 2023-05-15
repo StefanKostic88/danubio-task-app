@@ -30,7 +30,7 @@ const MainContainer = () => {
               position: "relative",
             }}
           >
-            <h2>Characters</h2>
+            <h1>Characters</h1>
           </div>
           <MainCardsContainer
             arrData={ctx.curPageCharactersArr}

@@ -53,7 +53,7 @@ const App = () => {
     };
 
     let timer;
-    // console.log(!isSearched);
+
     if (!isSearched) {
       setIsloading(() => true);
       getCurrentPageData();
@@ -111,6 +111,12 @@ const App = () => {
     setModalIsOpened(() => false);
   };
 
+  const reset = () => {
+    setCurrentPageObject(() => generateCurentPaginationState(1));
+    setIsSearched(() => false);
+    setHasError(() => false);
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -132,6 +138,7 @@ const App = () => {
         openModal,
         modalInfoData,
         closeModal,
+        reset,
       }}
     >
       <Routes>

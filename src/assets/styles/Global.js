@@ -32,7 +32,7 @@ body {
   }
 }
 h1 {
-  font-size: 7rem;
+  font-size: 5.2rem;
 }
 h2 {
   font-size: 3rem;
@@ -55,7 +55,6 @@ li {
 a{
   display:block;
   text-decoration: none;
-  // color:inherit;
 }
 `;
 

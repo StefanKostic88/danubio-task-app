@@ -33,4 +33,8 @@ export const NavigationHeadingStyled = styled.h3`
     transition: all 300ms ease;
     color: ${({ theme }) => theme.color.primaryGreen};
   }
+
+  img {
+    width: 150px;
+  }
 `;

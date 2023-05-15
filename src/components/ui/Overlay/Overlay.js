@@ -1,18 +1,7 @@
-import React from "react";
+import { OverlayStyled } from "../../../assets";
 
 const Overlay = ({ children }) => {
-  return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        background: "rgba(0,0,0,0.75)",
-        zIndex: 100,
-      }}
-    >
-      {children}
-    </div>
-  );
+  return <OverlayStyled>{children}</OverlayStyled>;
 };
 
 export default Overlay;

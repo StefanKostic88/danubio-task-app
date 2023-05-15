@@ -12,7 +12,6 @@ const MainNav = () => {
   const [characterSearch, setCharacterSearch] = useState("");
   const NavRef = useRef();
   const ctx = useContext(GlobalContext);
-
   useEffect(() => {
     ctx.getNavigationHeight(NavRef.current.clientHeight);
   }, []);
@@ -33,7 +32,9 @@ const MainNav = () => {
       <InnerNavStyled>
         <NavigationHeadingStyled>
           <img
-            style={{ width: "150px" }}
+            onClick={() => {
+              ctx.reset();
+            }}
             src="https://media.cdn.adultswim.com/uploads/20210428/21428161947-rick-and-morty-logo-png.png"
           />
         </NavigationHeadingStyled>

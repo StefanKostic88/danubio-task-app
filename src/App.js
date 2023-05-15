@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import GlobalContext from "./store/global-context";
 import { Root, HomePage } from "./pages";
-import { getCharactersPage } from "./services/fetchData";
+import { getCharactersPage, searchCharacter } from "./services/fetchData";
 import { generateCurentPaginationState } from "./assets";
 
 const App = () => {
@@ -12,6 +12,11 @@ const App = () => {
   const [currentPageObject, setCurrentPageObject] = useState({});
   const [isLoading, setIsloading] = useState(true);
   const [modalIsOpened, setModalIsOpened] = useState(false);
+  const [isSearched, setIsSearched] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [maxPages, setMaxPages] = useState(0);
+
+  const [searchedChar, setSearchedChar] = useState("");
 
   const selectPage = (curPage) => {
     setCurrentPageObject(() => generateCurentPaginationState(curPage));
@@ -19,20 +24,45 @@ const App = () => {
 
   useEffect(() => {
     setCurrentPageObject(() => generateCurentPaginationState(1));
+    setIsSearched(() => false);
+    setHasError(() => false);
   }, []);
 
   useEffect(() => {
     const getCurrentPageData = async () => {
       const { curPage: currentPage } = currentPageObject;
-      const currentPageData = await getCharactersPage(currentPage);
+      const { charArr: currentPageData, pagesCount } = await getCharactersPage(
+        currentPage
+      );
+      setMaxPages(() => pagesCount);
       setCurPageCharactersArr(() => [...currentPageData]);
     };
 
-    setIsloading(() => true);
-    getCurrentPageData();
-    const timer = setTimeout(() => {
-      setIsloading(() => false);
-    }, 1000);
+    const getSearchedData = async () => {
+      const { curPage: currentPage } = currentPageObject;
+      const { charArr: currentPageData, pagesCount } = await searchCharacter(
+        searchedChar,
+        currentPage
+      );
+      setCurPageCharactersArr(() => [...currentPageData]);
+    };
+
+    let timer;
+    // console.log(!isSearched);
+    if (!isSearched) {
+      setIsloading(() => true);
+      getCurrentPageData();
+      timer = setTimeout(() => {
+        setIsloading(() => false);
+      }, 1000);
+    }
+    if (isSearched) {
+      setIsloading(() => true);
+      getSearchedData();
+      timer = setTimeout(() => {
+        setIsloading(() => false);
+      }, 1000);
+    }
 
     return () => {
       clearTimeout(timer);
@@ -41,6 +71,28 @@ const App = () => {
 
   const getNavigationHeight = (height) => {
     setNavigationHeigth(() => height);
+  };
+
+  const getSearchedCharacters = async (searchedCharacter) => {
+    setHasError(() => false);
+    setSearchedChar(() => searchedCharacter);
+
+    try {
+      const { charArr: currentPageData, pagesCount } = await searchCharacter(
+        searchedCharacter
+      );
+      setMaxPages(() => pagesCount);
+      setCurrentPageObject(() => generateCurentPaginationState(1));
+      setIsSearched(() => true);
+      setIsloading(() => true);
+      setCurPageCharactersArr(() => [...currentPageData]);
+      const timer = setTimeout(() => {
+        setIsloading(() => false);
+        clearTimeout(timer);
+      }, 1000);
+    } catch (error) {
+      setHasError(() => true);
+    }
   };
 
   return (
@@ -57,6 +109,10 @@ const App = () => {
         selectPage: selectPage,
         isLoading,
         modalIsOpened,
+        getSearchedCharacters: getSearchedCharacters,
+        isSearched,
+        hasError,
+        maxPages,
       }}
     >
       <Routes>

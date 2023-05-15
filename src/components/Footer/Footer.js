@@ -15,7 +15,10 @@ const Footer = () => {
 
   if (!ctx.paginationData) return;
 
-  const generatedPagData = generatePaginationData(ctx.paginationData);
+  const generatedPagData = generatePaginationData(
+    ctx.paginationData,
+    ctx.maxPages
+  );
 
   const {
     prevFourPages,
@@ -41,15 +44,19 @@ const Footer = () => {
     nextFourPages,
   ];
 
+  console.log(paginationValues);
+
   return (
     <FooterStyled ref={footerRef}>
-      <FooterPagination
-        paginationNumbbersArr={paginationValues}
-        getCurrentPage={ctx.selectPage}
-        curPage={curPage}
-        prevPage={prevPage}
-        nextPage={nextPage}
-      />
+      {!ctx.hasError && ctx.maxPages && (
+        <FooterPagination
+          paginationNumbbersArr={paginationValues}
+          getCurrentPage={ctx.selectPage}
+          curPage={curPage}
+          prevPage={prevPage}
+          nextPage={nextPage}
+        />
+      )}
     </FooterStyled>
   );
 };

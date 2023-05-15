@@ -4,7 +4,7 @@ import { MainContainer, Modal } from "../../components";
 
 const HomePage = () => {
   const ctx = useContext(GlobalContext);
-  console.log(ctx.modalIsOpened);
+
   return (
     <>
       {ctx.modalIsOpened && <Modal />}

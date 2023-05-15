@@ -1,4 +1,8 @@
-import { generateCharacterData, generateModalData } from "../assets";
+import {
+  generateCharacterData,
+  generateModalData,
+  generateEpisodeData,
+} from "../assets";
 const API__URL = "https://rickandmortyapi.com/api/character/";
 
 export const getCharactersPage = async (curPage) => {
@@ -9,7 +13,7 @@ export const getCharactersPage = async (curPage) => {
     const { results, info } = await res.json();
 
     const charArr = results.map((el) => generateCharacterData(el));
-    console.log(charArr);
+
     const { pages: pagesCount } = info;
 
     return { charArr, pagesCount };
@@ -42,4 +46,11 @@ export const searchCharacter = async (name, curPage = 1) => {
   } catch (error) {
     throw error;
   }
+};
+
+export const getEpisode = async (episode) => {
+  const res = await fetch(episode);
+  const data = await res.json();
+
+  return generateEpisodeData(data);
 };

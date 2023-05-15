@@ -49,6 +49,14 @@ export const generateModalData = ({
   };
 };
 
+export const generateEpisodeData = ({ episode, name, air_date }) => {
+  return {
+    seasonEpisode: episode,
+    name,
+    airDate: air_date,
+  };
+};
+
 export const svgStatusOptions = {
   GREEN: "greenSvgRender",
   RED: "redSvgRender",

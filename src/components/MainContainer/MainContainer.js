@@ -8,11 +8,8 @@ import GlobalContext from "../../store/global-context";
 import { useContext } from "react";
 
 const MainContainer = () => {
-  //filter i loding spinner ovde
   const ctx = useContext(GlobalContext);
 
-  // if (!ctx.curPageCharactersArr || ctx.hasError) return;
-  // console.log(ctx.hasError);
   return (
     <ContainerWraper
       navigationHeight={ctx.navigationHeight}
@@ -35,7 +32,10 @@ const MainContainer = () => {
           >
             <h2>Characters</h2>
           </div>
-          <MainCardsContainer arrData={ctx.curPageCharactersArr} />
+          <MainCardsContainer
+            arrData={ctx.curPageCharactersArr}
+            onOpenModal={ctx.openModal}
+          />
         </>
       )}
       {ctx.isLoading && <Loading />}

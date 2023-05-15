@@ -21,8 +21,8 @@ const CustomButtonStyled = styled.button`
   }
 `;
 
-const CustomButton = ({ children }) => {
-  return <CustomButtonStyled>{children}</CustomButtonStyled>;
+const CustomButton = ({ children, onClick }) => {
+  return <CustomButtonStyled onClick={onClick}>{children}</CustomButtonStyled>;
 };
 
 export default CustomButton;

@@ -22,7 +22,7 @@ export const getCharacterInfo = async (id) => {
     const res = await fetch(`${API__URL}${id}`);
     const data = await res.json();
     if (!res.ok) throw new Error();
-    console.log(generateModalData(data));
+    return generateModalData(data);
   } catch (error) {
     throw error;
   }

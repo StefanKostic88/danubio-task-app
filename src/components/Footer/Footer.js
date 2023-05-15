@@ -44,8 +44,6 @@ const Footer = () => {
     nextFourPages,
   ];
 
-  console.log(paginationValues);
-
   return (
     <FooterStyled ref={footerRef}>
       {!ctx.hasError && ctx.maxPages && (

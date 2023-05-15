@@ -20,6 +20,7 @@ const CharacterCard = ({
   name,
   status,
   svgStatusRender,
+  onOpenModal,
 }) => {
   return (
     <WraperStyled>
@@ -44,7 +45,13 @@ const CharacterCard = ({
         </CardContent>
       </CardDetailsStyled>
       <CardActionsStyled>
-        <CustomButton>More</CustomButton>
+        <CustomButton
+          onClick={() => {
+            onOpenModal(id);
+          }}
+        >
+          More
+        </CustomButton>
         <CustomButton>Save</CustomButton>
       </CardActionsStyled>
     </WraperStyled>

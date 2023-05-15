@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import GlobalContext from "./store/global-context";
 import { Root, HomePage } from "./pages";
-import { getCharactersPage, searchCharacter } from "./services/fetchData";
+import {
+  getCharactersPage,
+  searchCharacter,
+  getCharacterInfo,
+} from "./services/fetchData";
 import { generateCurentPaginationState } from "./assets";
 
 const App = () => {
   const [curPageCharactersArr, setCurPageCharactersArr] = useState(null);
-  const [navigationHeight, setNavigationHeigth] = useState(0);
+  const [navigationHeight, setNavigationHeigth] = useState(92);
   const [footerHeight, setFooterHeight] = useState(0);
   const [currentPageObject, setCurrentPageObject] = useState({});
   const [isLoading, setIsloading] = useState(true);
@@ -15,6 +19,7 @@ const App = () => {
   const [isSearched, setIsSearched] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [maxPages, setMaxPages] = useState(0);
+  const [modalInfoData, setModalInfoData] = useState({});
 
   const [searchedChar, setSearchedChar] = useState("");
 
@@ -95,6 +100,17 @@ const App = () => {
     }
   };
 
+  const openModal = async (modalInfo) => {
+    const generatedModalData = await getCharacterInfo(modalInfo);
+    setModalInfoData(() => ({ ...generatedModalData }));
+    setModalIsOpened(() => true);
+  };
+
+  const closeModal = () => {
+    setModalInfoData(() => ({}));
+    setModalIsOpened(() => false);
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -113,6 +129,9 @@ const App = () => {
         isSearched,
         hasError,
         maxPages,
+        openModal,
+        modalInfoData,
+        closeModal,
       }}
     >
       <Routes>

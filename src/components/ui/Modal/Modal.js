@@ -4,6 +4,9 @@ import Overlay from "../Overlay/Overlay";
 import styled from "styled-components";
 import CustomButton from "../CustomButton/CustomButton";
 
+import GlobalContext from "../../../store/global-context";
+import { useContext } from "react";
+
 import { getCharacterInfo } from "../../../services/fetchData";
 
 const OverlayStyled = styled.div`
@@ -27,16 +30,29 @@ const OverlayStyled = styled.div`
 `;
 
 const Modal = () => {
+  const ctx = useContext(GlobalContext);
+
+  console.log(ctx.modalInfoData);
+  if (!ctx.modalInfoData) return;
+  const {
+    name,
+    gender,
+    status,
+    origin,
+    lastLocation,
+    episodeCount,
+    created,
+    image,
+    id,
+  } = ctx.modalInfoData;
+  console.log(id);
   return (
     <>
       <Overlay />
       <OverlayStyled>
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1 }}>
-            <img
-              src="https://rickandmortyapi.com/api/character/avatar/21.jpeg"
-              style={{ objectFit: "cover", width: "100%" }}
-            />
+            <img src={image} style={{ objectFit: "cover", width: "100%" }} />
           </div>
           <div
             style={{
@@ -47,9 +63,9 @@ const Modal = () => {
               padding: "2rem 0 0 1rem",
             }}
           >
-            <h4>Name: Rick</h4>
-            <h4>Gender: Male</h4>
-            <h4>Status: Alive</h4>
+            <h4>Name: {name}</h4>
+            <h4>Gender: {gender}</h4>
+            <h4>Status: {status}</h4>
           </div>
         </div>
         <div
@@ -61,9 +77,12 @@ const Modal = () => {
             padding: "3rem 2rem",
           }}
         >
-          <div>Origin: Earth</div>
-          <div>location: dsadadasd</div>
-          <h4>Epizodez count: 50</h4>
+          <h4>Origin: {origin}</h4>
+          <h4>Last seen location: {lastLocation}</h4>
+          <div>
+            <h4>Created: {created}</h4>
+            <h4>Epizodes count: {episodeCount}</h4>
+          </div>
         </div>
 
         <div
@@ -73,7 +92,13 @@ const Modal = () => {
             padding: "1rem 2rem 2rem 2rem",
           }}
         >
-          <CustomButton>Back</CustomButton>
+          <CustomButton
+            onClick={() => {
+              ctx.closeModal();
+            }}
+          >
+            Back
+          </CustomButton>
           <CustomButton>View More</CustomButton>
         </div>
       </OverlayStyled>

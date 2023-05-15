@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
+import backgroundImg from "../../assets/images/rick-and-morty-cover.jpg";
 
 const GlobalStyles = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&display=swap');
 html{
   font-size: 62.5%;
 }
@@ -14,12 +16,20 @@ html{
 }
 body {
   box-sizing: border-box;
-  // font-family: 'Syncopate', sans-serif;
-  font-family: 'Orbitron', sans-serif;
   font-size: 1.6rem;
-  background-color: rgba(0,0,0,0.85);
+  background-image: url(${backgroundImg});
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
   font-family:'Lora', serif;
-  font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+  }
 }
 h1 {
   font-size: 7rem;
@@ -28,7 +38,10 @@ h2 {
   font-size: 3rem;
 }
 h3 {
-  font-size: 2.4rem;
+  font-size: 2.6rem;
+}
+h4{
+  font-size: 1.8rem;
 }
 img {
   display: block;

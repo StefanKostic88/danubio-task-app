@@ -3,7 +3,7 @@ import { MainCardsContainerStyled } from "../../assets/styles/componentStyles/ch
 
 const MainCardsContainer = ({ arrData }) => {
   return (
-    <MainCardsContainerStyled>
+    <MainCardsContainerStyled style={{ zIndex: 1, position: "relative" }}>
       {arrData.map((el, index) => (
         <CharacterCard {...el} key={index} />
       ))}

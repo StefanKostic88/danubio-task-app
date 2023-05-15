@@ -5,3 +5,7 @@ export { default as ContainerWraper } from "./ui/ContainerWraper/ContainerWraper
 export { default as MainContainer } from "./MainContainer/MainContainer";
 export { default as CustomButton } from "./ui/CustomButton/CustomButton";
 export { default as ErrorComponent } from "./ui/ErrorComponent/ErrorComponent";
+export { default as Loading } from "./ui/Loading/Loading";
+export { default as Modal } from "./ui/Modal/Modal";
+export { default as CustomInput } from "./ui/CustomInput/CustomInput";
+export { default as CustomForm } from "./ui/CustomForm/CustomForm";

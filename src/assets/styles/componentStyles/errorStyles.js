@@ -5,6 +5,8 @@ export const ErrorWindowStyled = styled.div`
   margin-top: 20%;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  background: #e0e0e0;
 `;
 
 export const ErrorInnerStyled = styled.div`

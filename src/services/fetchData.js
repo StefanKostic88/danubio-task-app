@@ -1,76 +1,44 @@
-import { generateCharacterData } from "../assets";
+import { generateCharacterData, generateModalData } from "../assets";
 const API__URL = "https://rickandmortyapi.com/api/character/";
 
 export const getCharactersPage = async (curPage) => {
-  const res = await fetch(
-    `https://rickandmortyapi.com/api/character/?page=${curPage}`
-  );
-  const { results } = await res.json();
-  return results.map((el) => generateCharacterData(el));
+  try {
+    const res = await fetch(`${API__URL}?page=${curPage}`);
+    if (!res.ok) throw new Error();
+
+    const { results, info } = await res.json();
+
+    const charArr = results.map((el) => generateCharacterData(el));
+    const { pages: pagesCount } = info;
+
+    return { charArr, pagesCount };
+  } catch (error) {
+    throw error;
+  }
 };
 
-// const generateCharacterData = ({
-//   name,
-//   image,
-//   id,
-//   location: { name: lastLocation },
-//   status,
-// }) => {
-//   return {
-//     name,
-//     image,
-//     id,
-//     lastLocation,
-//     status,
-//   };
-// };
+export const getCharacterInfo = async (id) => {
+  try {
+    const res = await fetch(`${API__URL}${id}`);
+    const data = await res.json();
+    if (!res.ok) throw new Error();
+    console.log(generateModalData(data));
+  } catch (error) {
+    throw error;
+  }
+};
 
-//za modal
+export const searchCharacter = async (name, curPage = 1) => {
+  try {
+    const res = await fetch(`${API__URL}?name=${name}&page=${curPage}`);
+    if (!res.ok) throw new Error();
 
-// const generateCharacterData = ({
-//     created,
-//     episode,
-//     gender,
-//     id,
-//     image,
+    const { results, info } = await res.json();
 
-//     location,
-//     name,
-//     origin,
-//     status,
-//   }) => {
-//     console.log(
-//       created,
-//       episode,
-//       gender,
-//       id,
-//       image,
-//       image,
-//       location,
-//       name,
-//       origin,
-//       status
-//     );
-//   };
-
-// const getCharacterInfo = async (id) => {
-//   try {
-//     const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
-//     const data = await res.json();
-//     if (!res.ok) throw new Error();
-//     return generateCharacterInfo(data);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-// const getCharacterInfo = async (id) => {
-//   try {
-//     const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
-//     const data = await res.json();
-//     if (!res.ok) throw new Error();
-//     return generateCharacterInfo(data);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+    const charArr = results.slice(0, 10).map((el) => generateCharacterData(el));
+    const { pages: pagesCount } = info;
+    return { charArr, pagesCount };
+  } catch (error) {
+    throw error;
+  }
+};

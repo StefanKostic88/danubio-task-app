@@ -3,11 +3,11 @@ import GlobalContext from "../../store/global-context";
 import { MainContainer, Modal } from "../../components";
 
 const HomePage = () => {
-  const ctx = useContext(GlobalContext);
+  const { modalIsOpened } = useContext(GlobalContext);
 
   return (
     <>
-      {ctx.modalIsOpened && <Modal />}
+      {modalIsOpened && <Modal />}
       <MainContainer />
     </>
   );

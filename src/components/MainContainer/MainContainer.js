@@ -9,29 +9,35 @@ import { useContext } from "react";
 import { TitleStyled } from "../../assets";
 
 const MainContainer = () => {
-  const ctx = useContext(GlobalContext);
-
-  console.log();
+  const {
+    navigationHeight,
+    footerHeight,
+    isLoading,
+    hasError,
+    curPageCharactersArr,
+    openModal,
+    bookmarkCharacter,
+  } = useContext(GlobalContext);
 
   return (
     <ContainerWraper
-      navigationHeight={ctx.navigationHeight}
-      footerHeight={ctx.footerHeight}
+      navigationHeight={navigationHeight}
+      footerHeight={footerHeight}
     >
-      {!ctx.isLoading && !ctx.hasError && (
+      {!isLoading && !hasError && (
         <>
           <TitleStyled>
             <h1>Characters</h1>
           </TitleStyled>
           <MainCardsContainer
-            arrData={ctx.curPageCharactersArr}
-            onOpenModal={ctx.openModal}
-            onBookmarkCharacter={ctx.bookmarkCharacter}
+            arrData={curPageCharactersArr}
+            onOpenModal={openModal}
+            onBookmarkCharacter={bookmarkCharacter}
           />
         </>
       )}
-      {ctx.isLoading && <Loading />}
-      {ctx.hasError && <ErrorComponent />}
+      {isLoading && <Loading />}
+      {hasError && <ErrorComponent />}
     </ContainerWraper>
   );
 };

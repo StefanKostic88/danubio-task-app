@@ -1,9 +1,6 @@
-import React, { useEffect, useRef, useContext, useState } from "react";
 import GlobalContext from "../../store/global-context";
+import useMainNav from "../../hooks/use-main-nav";
 import CustomForm from "../ui/CustomForm/CustomForm";
-
-import { useLocation, useNavigate } from "react-router";
-
 import {
   NavigationStyled,
   InnerNavStyled,
@@ -11,39 +8,15 @@ import {
 } from "../../assets";
 
 const MainNav = () => {
-  const [characterSearch, setCharacterSearch] = useState("");
-  const NavRef = useRef();
-  const ctx = useContext(GlobalContext);
-
-  const { pathname } = useLocation();
-
-  const navigate = useNavigate();
-
-  const validPath = pathname === "/";
-
-  useEffect(() => {
-    ctx.getNavigationHeight(NavRef.current.clientHeight);
-  }, []);
-
-  const searchCharacterOnchangeHandler = (e) => {
-    setCharacterSearch(() => e.target.value);
-  };
-
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    if (!characterSearch) return;
-    ctx.getSearchedCharacters(characterSearch);
-    setCharacterSearch(() => "");
-  };
-
-  const refreshCardsHandler = () => {
-    console.log("refresh");
-    ctx.reset();
-  };
-
-  const navigateToHomePageHandler = () => {
-    navigate("/");
-  };
+  const {
+    NavRef,
+    validPath,
+    characterSearch,
+    searchCharacterOnchangeHandler,
+    onSubmitHandler,
+    refreshCardsHandler,
+    navigateToHomePageHandler,
+  } = useMainNav(GlobalContext);
 
   return (
     <NavigationStyled ref={NavRef}>
@@ -70,5 +43,3 @@ const MainNav = () => {
 };
 
 export default MainNav;
-
-// onSubmit, onChange, type

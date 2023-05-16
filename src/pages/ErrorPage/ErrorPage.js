@@ -18,6 +18,7 @@ const ErrorMessageContainerStyled = styled.div`
   background-size: cover;
   width: 50%;
   height: 50%;
+  border-radius: 50px;
 
   box-shadow: inset 0 0 40px 30px rgba(0, 0, 0, 0.75);
 
@@ -29,6 +30,7 @@ const ErrorMessageContainerStyled = styled.div`
     width: 100%;
     height: 100%;
     box-shadow: inset 0 0 40px 30px rgba(0, 0, 0, 0.85);
+    border-radius: 50px;
   }
 
   display: flex;

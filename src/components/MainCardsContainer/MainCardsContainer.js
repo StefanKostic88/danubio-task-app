@@ -3,7 +3,7 @@ import { MainCardsContainerStyled } from "../../assets/styles/componentStyles/ch
 
 const MainCardsContainer = ({ arrData, onOpenModal, onBookmarkCharacter }) => {
   return (
-    <MainCardsContainerStyled style={{ zIndex: 1, position: "relative" }}>
+    <MainCardsContainerStyled>
       {arrData.map((el, index) => (
         <CharacterCard
           {...el}

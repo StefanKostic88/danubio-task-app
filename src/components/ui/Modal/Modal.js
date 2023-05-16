@@ -11,11 +11,10 @@ import {
 } from "../../../assets";
 
 const Modal = () => {
-  const ctx = useContext(GlobalContext);
+  const { modalInfoData, closeModal, navigateToWikiPage } =
+    useContext(GlobalContext);
 
-  console.log(ctx.navigateToWikiPage);
-
-  if (!ctx.modalInfoData) return;
+  if (!modalInfoData) return;
   const {
     name,
     gender,
@@ -26,7 +25,7 @@ const Modal = () => {
     created,
     image,
     id,
-  } = ctx.modalInfoData;
+  } = modalInfoData;
 
   return (
     <>
@@ -57,15 +56,15 @@ const Modal = () => {
           <CustomButton
             isActive={true}
             onClick={() => {
-              ctx.closeModal();
+              closeModal();
             }}
           >
             Back
           </CustomButton>
           <CustomButton
             onClick={() => {
-              ctx.navigateToWikiPage(id);
-              ctx.closeModal();
+              navigateToWikiPage(id);
+              closeModal();
             }}
           >
             View More

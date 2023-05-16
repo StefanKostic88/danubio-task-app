@@ -65,6 +65,7 @@ const Modal = () => {
           <CustomButton
             onClick={() => {
               ctx.navigateToWikiPage(id);
+              ctx.closeModal();
             }}
           >
             View More

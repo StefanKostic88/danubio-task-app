@@ -8,6 +8,7 @@ import {
   getCharacterInfo,
 } from "./services/fetchData";
 import { generateCurentPaginationState } from "./assets";
+import { useNavigate } from "react-router";
 
 const App = () => {
   const [curPageCharactersArr, setCurPageCharactersArr] = useState(null);
@@ -22,6 +23,8 @@ const App = () => {
   const [modalInfoData, setModalInfoData] = useState({});
 
   const [searchedChar, setSearchedChar] = useState("");
+
+  const navigate = useNavigate();
 
   const selectPage = (curPage) => {
     setCurrentPageObject(() => generateCurentPaginationState(curPage));
@@ -120,6 +123,10 @@ const App = () => {
     setHasError(() => false);
   };
 
+  const navigateToWikiPage = (id) => {
+    navigate(`/character-details/:${id}`);
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -140,6 +147,7 @@ const App = () => {
         openModal,
         closeModal,
         reset,
+        navigateToWikiPage,
       }}
     >
       <Routes>

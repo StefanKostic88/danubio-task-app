@@ -2,19 +2,23 @@ import { useEffect, useState } from "react";
 import { ContainerWraper } from "../../components";
 import { getCharacterInfo, getEpisode } from "../../services/fetchData";
 
+import GlobalContext from "../../store/global-context";
+import { useContext } from "react";
+
 import styled from "styled-components";
 
 const WikiPageStyled = styled.div`
   color: ${({ theme }) => theme.fontColor.primary};
   position: relative;
   z-index: 1;
-  border: 1px solid ${({ theme }) => theme.color.primaryGreen};
+  border: 1px solid ${({ theme }) => theme.color.primaryBlue};
+  padding: 4rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
 `;
 
 const PageTopSideStyled = styled.div`
   display: flex;
-  padding: 2rem;
-  // background: rgba(0, 0, 0, 0.86);
 `;
 
 const PageTopDetailsSection = styled.div`
@@ -33,9 +37,10 @@ const PageTopDetailsSection = styled.div`
     gap: 0.5rem;
   }
   h3 {
-    font-size: 2.4rem;
-    letter-spacing: 0.5px;
+    font-size: 2.2rem;
+    letter-spacing: 2.5px;
     line-height: 30px;
+    font-weight: 500;
   }
 `;
 
@@ -44,7 +49,7 @@ const ImageContainerStyled = styled.div`
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 4px solid ${({ theme }) => theme.color.primaryGreen};
+  border: 4px solid ${({ theme }) => theme.color.primaryBlue};
   img {
     object-fit: cover;
     border-radius: 50%;
@@ -57,7 +62,7 @@ const ImageContainerStyled = styled.div`
     bottom: -5%;
     right: -7.5%;
     z-index: 10;
-    background: ${({ theme }) => theme.color.primaryGreen};
+    background: ${({ theme }) => theme.color.primaryBlue};
     color: #fff;
     width: 75px;
     height: 75px;
@@ -68,8 +73,58 @@ const ImageContainerStyled = styled.div`
   }
 `;
 
+const BottomSideStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+`;
+
+const EpisodesCountStyled = styled.div`
+  margin-bottom: 5rem;
+  display: flex;
+  // align-items: center;
+  justify-content: center;
+  h3 {
+    font-weight: 500;
+  }
+  // background: red;
+`;
+
+const EpisodesLIstSyled = styled.ul`
+  display: flex;
+  // flex-direction: column;
+  // gap: 0.75rem;
+  margin-top: 2rem;
+
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 5rem;
+`;
+
+const EpisodesLIstItem = styled.li`
+  flex: 25%;
+  div {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: center;
+  }
+  h3 {
+    font-weight: 500;
+    font-size: 2.2rem;
+    margin-bottom: 0.75rem;
+  }
+  p {
+    font-size: 18px;
+  }
+`;
+
 const CharacterWikiPage = () => {
   const [wikiPageData, setWikiPageData] = useState({});
+
+  const ctx = useContext(GlobalContext);
 
   useEffect(() => {
     const xxx = async (episode) => {
@@ -99,12 +154,16 @@ const CharacterWikiPage = () => {
     lastLocation,
     gender,
     episodeListData,
+    episodeCount,
   } = wikiPageData;
 
   if (!episodeListData) return;
 
   return (
-    <ContainerWraper>
+    <ContainerWraper
+      navigationHeight={ctx.navigationHeight}
+      footerHeight={ctx.footerHeight}
+    >
       <WikiPageStyled>
         <PageTopSideStyled>
           <ImageContainerStyled>
@@ -124,18 +183,25 @@ const CharacterWikiPage = () => {
             </div>
           </PageTopDetailsSection>
         </PageTopSideStyled>
-        <div>Episodes</div>
-        <ul>
-          {episodeListData.map(({ airDate, name, seasonEpisode }) => {
-            return (
-              <li>
-                {seasonEpisode}
-                {name}
-                {airDate}
-              </li>
-            );
-          })}
-        </ul>
+
+        <BottomSideStyled>
+          <EpisodesCountStyled>
+            <h3>Episode Count: {episodeCount}</h3>
+          </EpisodesCountStyled>
+          <EpisodesLIstSyled>
+            {episodeListData.map(({ airDate, name, seasonEpisode }, index) => {
+              return (
+                <EpisodesLIstItem key={index}>
+                  <div>
+                    <h3> {seasonEpisode}</h3>
+                    <p>{name}</p>
+                    <p> Air Date: {airDate}</p>
+                  </div>
+                </EpisodesLIstItem>
+              );
+            })}
+          </EpisodesLIstSyled>
+        </BottomSideStyled>
       </WikiPageStyled>
     </ContainerWraper>
   );

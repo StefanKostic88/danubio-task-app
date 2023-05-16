@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+Rick and Morty App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The application utilizes modern concepts and techniques to provide users with a rich experience when working with data.
+UseState, useContext, and react-router have been implemented for state management and routing.
+Additionally, the application includes functionality for error handling, prop drilling, state lifting, pagination, bookmarking system, and data searching.
 
-## Available Scripts
+It utilizes modern React concepts and hooks such as useState, useEffect, useContext, customHooks, and react-router.
+The main goal of this application is to provide a rich user experience when working with data.
 
-In the project directory, you can run:
+The application has a built-in error handling system to ensure that users receive relevant error messages in case of any issues during server interaction or data processing.
+Try-catch blocks are used, and appropriate error messages are displayed to the user.
 
-### `npm start`
+Additionally, the prop drilling approach and state lifting are used to enable communication between components that do not have a direct hierarchical relationship.
+The state is lifted to a higher level to facilitate data sharing among multiple components without the need to pass props through each intermediate component.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The application has implemented a functional pagination system to enable efficient navigation through a large amount of data.
+Users can browse through different result pages, and the data is dynamically loaded as the user transitions from one page to another.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Additionally, there is a bookmarking system functionality that allows users to mark specific data or pages they want to save for easy access later on.
+This functionality utilizes local storage to enable storing the user's bookmarked items.
 
-### `npm test`
+The application also features a functional search bar that enables users to search for data based on specific criteria.
+The number of searched cards is limited to 10.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The application is designed with access to other pages and modal windows.
+This functionality allows users to explore different parts of the application through navigation to different pages.
+Additionally, modal windows are used to display temporary or additional information, such as dialogs or alerts, without the need to leave the current page.
+This functionality enhances the user experience by enabling interaction with different parts of the application in an intuitive manner.

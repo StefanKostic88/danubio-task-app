@@ -132,9 +132,9 @@ export const ModalBottomSideStyled = styled.div`
 export const ButtonActionStyled = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding: 1rem 2rem 2rem 2rem;
-  gap: 0.25rem;
-  @media (max-width: 300px) {
+  padding: 1rem 3rem 2rem 3rem;
+  gap: 1.25rem;
+  @media (max-width: 340px) {
     flex-direction: column;
     gap: 0.5rem;
   }

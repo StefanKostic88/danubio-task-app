@@ -21,8 +21,6 @@ const MainNav = () => {
 
   const validPath = pathname === "/";
 
-  console.log(validPath);
-
   useEffect(() => {
     ctx.getNavigationHeight(NavRef.current.clientHeight);
   }, []);

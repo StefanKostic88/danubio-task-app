@@ -21,6 +21,8 @@ const CharacterCard = ({
   status,
   svgStatusRender,
   onOpenModal,
+  bookmarked,
+  onBookmarkCharacter,
 }) => {
   return (
     <WraperStyled>
@@ -52,7 +54,14 @@ const CharacterCard = ({
         >
           More
         </CustomButton>
-        <CustomButton>Save</CustomButton>
+        <CustomButton
+          onClick={() => {
+            onBookmarkCharacter(id);
+          }}
+          isActive={bookmarked}
+        >
+          Save
+        </CustomButton>
       </CardActionsStyled>
     </WraperStyled>
   );

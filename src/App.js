@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import GlobalContext from "./store/global-context";
-import { Root, HomePage } from "./pages";
+import { Root, HomePage, CharacterWikiPage } from "./pages";
 import {
   getCharactersPage,
   searchCharacter,
   getCharacterInfo,
 } from "./services/fetchData";
-import { generateCurentPaginationState } from "./assets";
+
+import {
+  checkAndUpdateBookmarkedStatus,
+  generateCurentPaginationState,
+  updateBookmark,
+  getBookmarks,
+} from "./assets";
+
+import { useNavigate } from "react-router";
 
 const App = () => {
   const [curPageCharactersArr, setCurPageCharactersArr] = useState(null);
@@ -23,6 +31,8 @@ const App = () => {
 
   const [searchedChar, setSearchedChar] = useState("");
 
+  const navigate = useNavigate();
+
   const selectPage = (curPage) => {
     setCurrentPageObject(() => generateCurentPaginationState(curPage));
   };
@@ -34,13 +44,18 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    const bookmarkArr = getBookmarks();
     const getCurrentPageData = async () => {
       const { curPage: currentPage } = currentPageObject;
       const { charArr: currentPageData, pagesCount } = await getCharactersPage(
         currentPage
       );
+      const mutatedData = checkAndUpdateBookmarkedStatus(
+        currentPageData,
+        bookmarkArr
+      );
       setMaxPages(() => pagesCount);
-      setCurPageCharactersArr(() => [...currentPageData]);
+      setCurPageCharactersArr(() => [...mutatedData]);
     };
 
     const getSearchedData = async () => {
@@ -49,7 +64,13 @@ const App = () => {
         searchedChar,
         currentPage
       );
-      setCurPageCharactersArr(() => [...currentPageData]);
+      const data = localStorage.getItem("bookmarkedCharacters");
+      const bookmarkArr = JSON.parse(data);
+      const mutatedData = checkAndUpdateBookmarkedStatus(
+        currentPageData,
+        bookmarkArr
+      );
+      setCurPageCharactersArr(() => [...mutatedData]);
     };
 
     let timer;
@@ -93,7 +114,7 @@ const App = () => {
       setCurrentPageObject(() => generateCurentPaginationState(1));
       setIsSearched(() => true);
       setIsloading(() => true);
-      setCurPageCharactersArr(() => [...currentPageData]);
+
       const timer = setTimeout(() => {
         setIsloading(() => false);
         clearTimeout(timer);
@@ -120,6 +141,29 @@ const App = () => {
     setHasError(() => false);
   };
 
+  const navigateToWikiPage = (id) => {
+    navigate(`/character-details/:${id}`);
+  };
+
+  const bookmarkCharacter = (id) => {
+    const data = getBookmarks();
+    let mutatedObj;
+    let bookmarkArr = data === null ? [] : [...data];
+
+    const updatedArr = curPageCharactersArr.map((el) => {
+      if (el.id === id) {
+        mutatedObj = { ...el, bookmarked: !el.bookmarked };
+        return mutatedObj;
+      } else {
+        return el;
+      }
+    });
+    bookmarkArr = updateBookmark(bookmarkArr, mutatedObj, mutatedObj.id);
+    console.log(bookmarkArr);
+    localStorage.setItem("bookmarkedCharacters", JSON.stringify(bookmarkArr));
+    setCurPageCharactersArr(() => [...updatedArr]);
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -140,12 +184,17 @@ const App = () => {
         openModal,
         closeModal,
         reset,
+        navigateToWikiPage,
+        bookmarkCharacter,
       }}
     >
       <Routes>
         <Route path="/" element={<Root />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="*" element={<div>Error</div>} />
+          <Route
+            path="/character-details/:id"
+            element={<CharacterWikiPage />}
+          />
         </Route>
       </Routes>
     </GlobalContext.Provider>

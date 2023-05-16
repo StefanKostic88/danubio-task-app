@@ -9,3 +9,4 @@ export { default as Loading } from "./ui/Loading/Loading";
 export { default as Modal } from "./ui/Modal/Modal";
 export { default as CustomInput } from "./ui/CustomInput/CustomInput";
 export { default as CustomForm } from "./ui/CustomForm/CustomForm";
+export { default as WikiPageSection } from "./WikiPageSection/WikiPageSection";

@@ -11,6 +11,8 @@ import { TitleStyled } from "../../assets";
 const MainContainer = () => {
   const ctx = useContext(GlobalContext);
 
+  console.log();
+
   return (
     <ContainerWraper
       navigationHeight={ctx.navigationHeight}
@@ -24,6 +26,7 @@ const MainContainer = () => {
           <MainCardsContainer
             arrData={ctx.curPageCharactersArr}
             onOpenModal={ctx.openModal}
+            onBookmarkCharacter={ctx.bookmarkCharacter}
           />
         </>
       )}

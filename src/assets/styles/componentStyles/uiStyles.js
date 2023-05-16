@@ -8,8 +8,9 @@ export const ContainerWraperStyled = styled.main`
   );
   // border: 1px solid red;
   width: 100%;
-  margin-top: ${(props) => (props.topSide ? props.topSide : 92)}px;
-  margin-bottom: ${(props) => (props.bottomSide ? props.bottomSide : 92)}px;
+  margin-top: ${(props) => (props.topSide > 92 ? props.topSide : 92)}px;
+  margin-bottom: ${(props) =>
+    props.bottomSide > 92 ? props.bottomSide : 92}px;
   position: relative;
   z-index: 1;
 `;

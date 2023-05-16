@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useContext, useState } from "react";
 import GlobalContext from "../../store/global-context";
 import CustomForm from "../ui/CustomForm/CustomForm";
 
+import { useLocation, useNavigate } from "react-router";
+
 import {
   NavigationStyled,
   InnerNavStyled,
@@ -12,6 +14,13 @@ const MainNav = () => {
   const [characterSearch, setCharacterSearch] = useState("");
   const NavRef = useRef();
   const ctx = useContext(GlobalContext);
+
+  const { pathname } = useLocation();
+
+  const navigate = useNavigate();
+
+  const validPath = pathname === "/";
+
   useEffect(() => {
     ctx.getNavigationHeight(NavRef.current.clientHeight);
   }, []);
@@ -27,23 +36,34 @@ const MainNav = () => {
     setCharacterSearch(() => "");
   };
 
+  const refreshCardsHandler = () => {
+    console.log("refresh");
+    ctx.reset();
+  };
+
+  const navigateToHomePageHandler = () => {
+    navigate("/");
+  };
+
   return (
     <NavigationStyled ref={NavRef}>
       <InnerNavStyled>
         <NavigationHeadingStyled>
           <img
-            onClick={() => {
-              ctx.reset();
-            }}
+            onClick={
+              validPath ? refreshCardsHandler : navigateToHomePageHandler
+            }
             src="https://media.cdn.adultswim.com/uploads/20210428/21428161947-rick-and-morty-logo-png.png"
           />
         </NavigationHeadingStyled>
-        <CustomForm
-          onSubmit={onSubmitHandler}
-          type={"text"}
-          onChange={searchCharacterOnchangeHandler}
-          searchVal={characterSearch}
-        />
+        {validPath && (
+          <CustomForm
+            onSubmit={onSubmitHandler}
+            type={"text"}
+            onChange={searchCharacterOnchangeHandler}
+            searchVal={characterSearch}
+          />
+        )}
       </InnerNavStyled>
     </NavigationStyled>
   );

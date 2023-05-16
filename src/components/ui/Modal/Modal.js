@@ -13,6 +13,8 @@ import {
 const Modal = () => {
   const ctx = useContext(GlobalContext);
 
+  console.log(ctx.navigateToWikiPage);
+
   if (!ctx.modalInfoData) return;
   const {
     name,
@@ -60,7 +62,14 @@ const Modal = () => {
           >
             Back
           </CustomButton>
-          <CustomButton>View More</CustomButton>
+          <CustomButton
+            onClick={() => {
+              ctx.navigateToWikiPage(id);
+              ctx.closeModal();
+            }}
+          >
+            View More
+          </CustomButton>
         </ButtonActionStyled>
       </ModalyStyled>
     </>

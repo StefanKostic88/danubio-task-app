@@ -17,6 +17,7 @@ export * from "./styles/componentStyles/characterCardStyles";
 export * from "./styles/componentStyles/errorStyles";
 export * from "./styles/componentStyles/footerStyles";
 export * from "./styles/componentStyles/loadingStyled";
+export * from "./styles/componentStyles/wikiPageSectionStyles";
 
 //Helper Functions
 

@@ -4,7 +4,8 @@ export const WikiPageStyled = styled.div`
   color: ${({ theme }) => theme.fontColor.primary};
   position: relative;
   z-index: 1;
-  border: 1px solid ${({ theme }) => theme.color.primaryBlue};
+  // border: 1px solid ${({ theme }) => theme.color.primaryBlue};
+  border: 1px solid ${({ theme }) => theme.fontColor.primaryGreen};
   padding: 4rem 2rem;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
@@ -42,7 +43,7 @@ export const ImageContainerStyled = styled.div`
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 4px solid ${({ theme }) => theme.color.primaryBlue};
+  border: 4px solid ${({ theme }) => theme.fontColor.primaryGreen};
   img {
     object-fit: cover;
     border-radius: 50%;
@@ -55,7 +56,7 @@ export const ImageContainerStyled = styled.div`
     bottom: -5%;
     right: -7.5%;
     z-index: 10;
-    background: ${({ theme }) => theme.color.primaryBlue};
+    background: ${({ theme }) => theme.fontColor.primaryGreen};
     color: #fff;
     width: 75px;
     height: 75px;

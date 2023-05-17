@@ -58,6 +58,10 @@ const useAppGlobal = () => {
     navigate(`/character-details/:${id}`);
   };
 
+  const navigateToHome = () => {
+    navigate(`/`);
+  };
+
   const bookmarkCharacter = (id) => {
     const data = getBookmarks();
     let mutatedObj;
@@ -176,6 +180,7 @@ const useAppGlobal = () => {
     reset,
     navigateToWikiPage,
     bookmarkCharacter,
+    navigateToHome,
   };
 
   return contextObject;

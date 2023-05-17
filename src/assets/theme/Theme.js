@@ -2,10 +2,12 @@ const theme = {
   fontColor: {
     primary: "#eaeaea",
     primaryDark: "#000",
+    primaryGreen: "#5cad4a",
   },
   color: {
     // primaryGreen: "#188754",
     primaryGreen: "#00B2C8",
+    secundaryGreen: "#5cad4a",
     primaryBlue: "#0C6EFD",
   },
   width: { xl: "1300px", lg: "1075px" },

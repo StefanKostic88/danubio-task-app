@@ -29,7 +29,7 @@ export const WraperStyled = styled.figure`
   display: flex;
   flex-direction: column;
   // border: 5px solid #fff;
-  border: 5px solid ${({ theme }) => theme.color.primaryGreen};
+  border: 2px solid ${({ theme }) => theme.color.primaryGreen};
   padding: 1rem;
   background: #000000db;
   border-radius: 10px;
@@ -51,6 +51,12 @@ export const WraperStyled = styled.figure`
   @media (max-width: 655px) {
     grid-template-columns: repeat(1, auto);
     padding: 2rem 0;
+  }
+
+  h3,
+  h4 {
+    color: ${({ theme }) => theme.fontColor.primaryGreen};
+    color: ${({ theme }) => theme.color.primaryGreen};
   }
 `;
 
@@ -182,9 +188,9 @@ export const MiaStatusStyled = styled.div`
   width: 100%;
   height: 100%;
   left: 1rem;
-  color: #fff;
   font-size: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: ${({ theme }) => theme.fontColor.primaryGreen};
 `;

@@ -17,6 +17,7 @@ export const ContainerWraperStyled = styled.main`
 
 export const CustomButtonStyled = styled.button`
   font-size: 1.8rem;
+  font-weight: 500;
   // color: ${({ theme }) => theme.fontColor.primaryDark};
   border: 1px solid ${({ theme }) => theme.color.primaryGreen};
   padding: 0.5rem 2rem;
@@ -24,7 +25,7 @@ export const CustomButtonStyled = styled.button`
   width: 100%;
   cursor: pointer;
   background: ${(props) => (props.isActive ? "#00B2C8" : null)};
-  color: ${(props) => (props.isActive ? "#fff" : "#000")};
+  color: ${(props) => (props.isActive ? "#fff" : "#333")};
 
   &:hover {
     background: ${({ theme }) => theme.color.primaryGreen};
@@ -47,8 +48,8 @@ export const InputStyled = styled.input`
   width: 100%;
   height: 100%;
   border: none;
-  box-shadow: 0 0 1px 1px ${({ theme }) => theme.color.primaryBlue};
-  color: #fff;
+  box-shadow: 0 0 1px 1px ${({ theme }) => theme.color.secundaryGreen};
+  color: ${({ theme }) => theme.fontColor.primaryGreen};
 `;
 
 export const InputButton = styled.button`
@@ -63,10 +64,10 @@ export const InputButton = styled.button`
   font-size: 16px;
   border-top-right-radius: 0.75rem;
   border-bottom-right-radius: 0.75rem;
-  box-shadow: 0 0 1px 1px ${({ theme }) => theme.color.primaryBlue};
+  box-shadow: 0 0 1px 1px ${({ theme }) => theme.color.secundaryGreen};
   border: none;
   color: #fff;
-  background: #0c6efd;
+  background: ${({ theme }) => theme.color.secundaryGreen};
 `;
 
 export const OverlayStyled = styled.div`
@@ -85,7 +86,9 @@ export const ModalyStyled = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background: black;
-  color: #fff;
+  // color: #fff;
+  // color: ${({ theme }) => theme.fontColor.primaryGreen};
+  color: ${({ theme }) => theme.color.primaryGreen};
   border: 2px solid ${({ theme }) => theme.color.primaryGreen};
   border-radius: 10px;
   overflow: hidden;
@@ -148,6 +151,7 @@ export const TitleStyled = styled.div`
   align-items: center;
   gap: 1rem;
   color: ${({ theme }) => theme.fontColor.primary};
+  color: ${({ theme }) => theme.color.primaryGreen};
   z-index: 1;
   position: relative;
 `;

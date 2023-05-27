@@ -25,6 +25,7 @@ const useAppGlobal = () => {
   const [maxPages, setMaxPages] = useState(0);
   const [modalInfoData, setModalInfoData] = useState({});
   const [searchedChar, setSearchedChar] = useState("");
+  const [status, setStatus] = useState(null);
   const navigate = useNavigate();
 
   const selectPage = (curPage) => {
@@ -52,6 +53,7 @@ const useAppGlobal = () => {
     setCurrentPageObject(() => generateCurentPaginationState(1));
     setIsSearched(() => false);
     setHasError(() => false);
+    setStatus(() => null);
   };
 
   const navigateToWikiPage = (id) => {
@@ -113,7 +115,8 @@ const useAppGlobal = () => {
     const getCurrentPageData = async () => {
       const { curPage: currentPage } = currentPageObject;
       const { charArr: currentPageData, pagesCount } = await getCharactersPage(
-        currentPage
+        currentPage,
+        status
       );
       const mutatedData = checkAndUpdateBookmarkedStatus(
         currentPageData,
@@ -127,7 +130,8 @@ const useAppGlobal = () => {
       const { curPage: currentPage } = currentPageObject;
       const { charArr: currentPageData, pagesCount } = await searchCharacter(
         searchedChar,
-        currentPage
+        currentPage,
+        status
       );
       const data = localStorage.getItem("bookmarkedCharacters");
       const bookmarkArr = JSON.parse(data);
@@ -158,7 +162,14 @@ const useAppGlobal = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [currentPageObject]);
+  }, [currentPageObject, status]);
+
+  const filterCharacters = (status) => {
+    console.log(status);
+    setStatus(() => status);
+  };
+
+  console.log(status);
 
   const contextObject = {
     curPageCharactersArr,
@@ -181,6 +192,7 @@ const useAppGlobal = () => {
     navigateToWikiPage,
     bookmarkCharacter,
     navigateToHome,
+    filterCharacters,
   };
 
   return contextObject;

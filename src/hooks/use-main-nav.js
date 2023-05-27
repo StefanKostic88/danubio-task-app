@@ -4,8 +4,12 @@ import { useLocation, useNavigate } from "react-router";
 const useMainNav = (GlobalContext) => {
   const [characterSearch, setCharacterSearch] = useState("");
   const NavRef = useRef();
-  const { reset, getSearchedCharacters, getNavigationHeight } =
-    useContext(GlobalContext);
+  const {
+    reset,
+    getSearchedCharacters,
+    getNavigationHeight,
+    filterCharacters,
+  } = useContext(GlobalContext);
 
   const { pathname } = useLocation();
 
@@ -44,6 +48,7 @@ const useMainNav = (GlobalContext) => {
     onSubmitHandler,
     refreshCardsHandler,
     navigateToHomePageHandler,
+    filterCharacters,
   };
 };
 

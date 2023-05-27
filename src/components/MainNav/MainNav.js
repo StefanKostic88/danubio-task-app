@@ -6,6 +6,7 @@ import {
   InnerNavStyled,
   NavigationHeadingStyled,
 } from "../../assets";
+import CustomButton from "../ui/CustomButton/CustomButton";
 
 const MainNav = () => {
   const {
@@ -16,6 +17,7 @@ const MainNav = () => {
     onSubmitHandler,
     refreshCardsHandler,
     navigateToHomePageHandler,
+    filterCharacters,
   } = useMainNav(GlobalContext);
 
   return (
@@ -29,6 +31,38 @@ const MainNav = () => {
             src="https://media.cdn.adultswim.com/uploads/20210428/21428161947-rick-and-morty-logo-png.png"
           />
         </NavigationHeadingStyled>
+
+        <div
+          style={{
+            marginLeft: "auto",
+            paddingRight: "2rem",
+            display: "flex",
+            gap: "1rem",
+          }}
+        >
+          <CustomButton
+            onClick={() => {
+              filterCharacters("alive");
+            }}
+          >
+            Alive
+          </CustomButton>
+          <CustomButton
+            onClick={() => {
+              filterCharacters("dead");
+            }}
+          >
+            dead
+          </CustomButton>
+          <CustomButton
+            onClick={() => {
+              filterCharacters("unknown");
+            }}
+          >
+            unknown
+          </CustomButton>
+        </div>
+
         {validPath && (
           <CustomForm
             onSubmit={onSubmitHandler}

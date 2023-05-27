@@ -5,9 +5,11 @@ import {
 } from "../assets";
 const API__URL = "https://rickandmortyapi.com/api/character/";
 
-export const getCharactersPage = async (curPage) => {
+export const getCharactersPage = async (curPage, status = null) => {
+  const str = status ? `&status=${status}` : null;
+
   try {
-    const res = await fetch(`${API__URL}?page=${curPage}`);
+    const res = await fetch(`${API__URL}?page=${curPage}${str}`);
     if (!res.ok) throw new Error();
 
     const { results, info } = await res.json();
@@ -15,6 +17,7 @@ export const getCharactersPage = async (curPage) => {
     const charArr = results.map((el) => generateCharacterData(el));
 
     const { pages: pagesCount } = info;
+    console.log(results);
 
     return { charArr, pagesCount };
   } catch (error) {
@@ -33,9 +36,10 @@ export const getCharacterInfo = async (id) => {
   }
 };
 
-export const searchCharacter = async (name, curPage = 1) => {
+export const searchCharacter = async (name, curPage = 1, status = null) => {
+  const str = status ? `&status=${status}` : null;
   try {
-    const res = await fetch(`${API__URL}?name=${name}&page=${curPage}`);
+    const res = await fetch(`${API__URL}?name=${name}&page=${curPage}${str}`);
     if (!res.ok) throw new Error();
 
     const { results, info } = await res.json();
